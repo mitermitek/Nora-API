@@ -12,8 +12,8 @@ use App\Http\Controllers\Friends\ShowFriendPhotosController;
 use App\Http\Controllers\Friends\ShowFriendsAlbumsController;
 use App\Http\Controllers\Friends\ShowFriendsController;
 use App\Http\Controllers\Friends\ShowFriendsPhotosController;
-use App\Http\Controllers\Token\CreateTokenController;
-use App\Http\Controllers\Token\RevokeCurrentTokenController;
+use App\Http\Controllers\Tokens\CreateTokenController;
+use App\Http\Controllers\Tokens\RevokeCurrentTokenController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
