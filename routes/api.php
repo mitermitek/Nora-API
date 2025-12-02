@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Friends\Requests\AcceptFriendRequestController;
+use App\Http\Controllers\Friends\Requests\CreateFriendRequestController;
+use App\Http\Controllers\Friends\Requests\DeclineFriendRequestController;
+use App\Http\Controllers\Friends\Requests\ShowReceivedFriendRequestsController;
+use App\Http\Controllers\Friends\Requests\ShowSentFriendRequestsController;
 use App\Http\Controllers\Friends\ShowFriendAlbumsController;
 use App\Http\Controllers\Friends\ShowFriendController;
 use App\Http\Controllers\Friends\ShowFriendPhotosController;
@@ -26,6 +31,19 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('{id}', ShowFriendController::class);
         Route::get('{id}/photos', ShowFriendPhotosController::class);
         Route::get('{id}/albums', ShowFriendAlbumsController::class);
+
+        Route::prefix('requests')->group(function () {
+            Route::prefix('sent')->group(function () {
+                Route::get('', ShowSentFriendRequestsController::class);
+                Route::post('', CreateFriendRequestController::class);
+            });
+
+            Route::prefix('received')->group(function () {
+                Route::get('', ShowReceivedFriendRequestsController::class);
+                Route::patch('{id}/accept', AcceptFriendRequestController::class);
+                Route::patch('{id}/decline', DeclineFriendRequestController::class);
+            });
+        });
 
         Route::prefix('photos')->group(function () {
             Route::get('', ShowFriendsPhotosController::class);

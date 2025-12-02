@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FriendshipStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,14 +41,19 @@ class User extends Authenticatable
         return $this->hasMany(Album::class, 'user_id');
     }
 
-    public function friendships()
+    public function sentFriendRequests()
     {
         return $this->hasMany(Friendship::class, 'user_id');
     }
 
+    public function receivedFriendRequests()
+    {
+        return $this->hasMany(Friendship::class, 'friend_id');
+    }
+
     public function friends()
     {
-        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id')
-            ->wherePivot('status', 'accepted');
+        return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
+            ->wherePivot('status', FriendshipStatusEnum::ACCEPTED);
     }
 }
