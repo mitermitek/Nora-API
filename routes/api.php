@@ -1,19 +1,16 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Token\CreateTokenController;
+use App\Http\Controllers\Token\RevokeCurrentTokenController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('web')->prefix('auth')->group(function () {
-    Route::post('/login', [AuthController::class, 'login']);
-
-    Route::middleware(['auth:sanctum'])->group(function () {
-        Route::get('/me', [AuthController::class, 'me']);
-        Route::post('/logout', [AuthController::class, 'logout']);
-    });
+Route::prefix('tokens')->group(function () {
+    Route::post('', CreateTokenController::class);
+    Route::delete('', RevokeCurrentTokenController::class)->middleware('auth:sanctum');
 });
 
-Route::middleware(['web', 'auth:sanctum'])->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index']);
         Route::post('/', [UserController::class, 'store']);
