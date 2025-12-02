@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Friends\ShowFriendsAlbumsController;
+use App\Http\Controllers\Friends\ShowFriendsController;
 use App\Http\Controllers\Friends\ShowFriendsPhotosController;
 use App\Http\Controllers\Token\CreateTokenController;
 use App\Http\Controllers\Token\RevokeCurrentTokenController;
@@ -18,6 +19,8 @@ Route::prefix('tokens')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('friends')->group(function () {
+        Route::get('', ShowFriendsController::class);
+
         Route::prefix('photos')->group(function () {
             Route::get('', ShowFriendsPhotosController::class);
         });
