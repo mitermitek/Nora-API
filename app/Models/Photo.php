@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Photo extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'path',
+        'caption',
+        'street_address',
+        'postal_code',
+        'city',
+        'country',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function albums()
+    {
+        return $this->belongsToMany(Album::class, 'photo_album', 'photo_id', 'album_id');
+    }
+}
