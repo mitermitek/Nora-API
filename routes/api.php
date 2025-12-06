@@ -1,14 +1,14 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Friends\Friend\ShowFriendAlbumsController;
+use App\Http\Controllers\Friends\Friend\ShowFriendController;
+use App\Http\Controllers\Friends\Friend\ShowFriendPhotosController;
 use App\Http\Controllers\Friends\Requests\AcceptFriendRequestController;
 use App\Http\Controllers\Friends\Requests\CreateFriendRequestController;
 use App\Http\Controllers\Friends\Requests\DeclineFriendRequestController;
 use App\Http\Controllers\Friends\Requests\ShowReceivedFriendRequestsController;
 use App\Http\Controllers\Friends\Requests\ShowSentFriendRequestsController;
-use App\Http\Controllers\Friends\ShowFriendAlbumsController;
-use App\Http\Controllers\Friends\ShowFriendController;
-use App\Http\Controllers\Friends\ShowFriendPhotosController;
 use App\Http\Controllers\Friends\ShowFriendsAlbumsController;
 use App\Http\Controllers\Friends\ShowFriendsController;
 use App\Http\Controllers\Friends\ShowFriendsPhotosController;

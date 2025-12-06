@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Friends;
+namespace App\Http\Controllers\Friends\Friend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Album;
