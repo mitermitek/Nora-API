@@ -1,4 +1,4 @@
-# Base Laravel API
+# Nora API
 
 ## Prérequis
 - PHP 8.2+
